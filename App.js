@@ -1,114 +1,81 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { Component,useState,useEffect } from 'react';
+import { View, Text ,TextInput,TouchableOpacity, ViewBase,StyleSheet,Dimensions} from 'react-native';
+import {Block,Morph,VectorIcon}from './src/components'
+import  axios from 'axios'
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+const App =()=> {
+    const [username,setUsername] = useState(null)
+    const [password,setPassword] = useState(null)
+    const [isSignIn,setIsSignIn] = useState(false)
+    const{width,height} = Dimensions.get('window')
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+    const SLIDE_HEIGHT = 0.61 * height
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+    const styles = StyleSheet.create({
+      titleContainer:{
+          backgroundColor:'red',
+          height:100,
+          justifyContent:'center',
+          transform:[
+            {translateY:(SLIDE_HEIGHT-100)/2},
+            {translateX:-width/2+60},
+            {rotate:"90deg"}
+          ]
+      }
+    })
+    useEffect(()=>{
+      console.log('hhahaha state change')
+    },[])
+    
+    // const SingIn=()=>{
+    //   axios.post('http://localhost:3000/auth/login', {
+    //     username: username,
+    //     password: password
+    //   })
+    //   .then(function (response) {
+    //     console.log('result',response.data.row);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    // }
+    return (
+      <View style={{
+       flex:1,
+       backgroundColor:'pink'
+      }}>
+      {/* <TextInput 
+        placeholder='username'
+        style={{width:300,height:50,borderWidth:1,borderRadius:5}}
+        onChangeText={(t)=>{setUsername(t)}}
+        autoCapitalize={'none'}
+      />
+      <TextInput 
+        placeholder='password'
+        style={{width:300,height:50,borderWidth:1,borderRadius:5}}
+        onChangeText={(t)=>{setPassword(t)}}
+        autoCapitalize={'none'}
+
+      />
+      <TouchableOpacity onPress={()=>SingIn()}>
+        <Morph radius={5} style={{width:100,height:50,marginTop:20}}>
+          <Text>Sing In </Text>
+        </Morph>
+      </TouchableOpacity> */}
+          <View style={styles.titleContainer}>
+            <Text 
+            style={{fontSize:80,
+            lineHeight:80,
+            textAlign:'center',
+            color:'white'
+            }}>Toafn dz </Text>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+        
+      </View>
+    );
+  }
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
-export default App;
+
+
+export default  App
